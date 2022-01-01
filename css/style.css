@@ -82,7 +82,7 @@
   .hero           {
     min-height: 800px;
     text-align: center;
-    background-image: url('../img/bg.jpg');
+    background-image: url('../img/bg.png');
     background-size: cover;
   }
   .hero-content   {
