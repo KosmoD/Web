@@ -133,23 +133,24 @@
   }
   
   /* feature boxes */
-  .feature-box   {
-    display: inline-block;
+.feature-box   {
+    display: inline-flexbox;
     width: 33%;
-    padding: 20px 30px;
+    padding: 20px 100px;
   }
   .feature-box img  {
     margin-bottom: 12px;
-    width: 80px;
+    width: 100px;
   }
   .feature-box h5   {
-    font-size: 20px;
-    color: #999;
+    font-size: 30px;
+    color: #000000;
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 2px;
     margin: 0;
   }
+  
   
   /* testimonial boxes */
   .testimonial-box   {
