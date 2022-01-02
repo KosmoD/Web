@@ -153,7 +153,7 @@
   
   
   /* testimonial boxes */
-  .testimonial-box   {
+ .testimonial-box   {
     display: inline-block;
     width: 33%;
     padding: 20px 30px;
@@ -163,6 +163,7 @@
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 15px;
+    align-items: center;
   }  
   
   .testimonial-author h5   {
