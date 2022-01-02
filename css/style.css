@@ -164,13 +164,7 @@
     border-radius: 4px;
     margin-bottom: 15px;
   }  
-  .testimonial-author img {
-    float: left;
-    width: 80px;
-    border-radius: 50%;
-    margin-right: 15px;
-    vertical-align: middle;
-  }
+  
   .testimonial-author h5   {
     font-size: 18px;
     margin: 0;
