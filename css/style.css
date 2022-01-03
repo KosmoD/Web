@@ -174,3 +174,7 @@
   .testimonial-author span {
     font-size: 14px;
   }
+.moreParent{
+  display: flex;
+  justify-content: center
+}
