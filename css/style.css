@@ -142,7 +142,7 @@ h3 {
   .hero           {
     min-height: 800px;
     text-align: center;
-    background-image: url('../img/bluewaterbg.jpg');
+    
     background-size: cover;
   }
   .hero-content   {
