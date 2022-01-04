@@ -82,11 +82,11 @@
   .hero           {
     min-height: 800px;
     text-align: center;
-    background-color: #000521;
+    background-color: #00042E;
     background-size: cover;
   }
   .hero-content   {
-    color: #000000;
+    color: #FFFFFF;
     padding-top: 130px;
   }
   .hero-content h1   {
@@ -98,7 +98,7 @@
   }
   .hero-content a    {
     display: inline-block;
-    color: #000000;
+    color: #FFFFFF;
     border: 3px solid #FFF;
     border-radius: 3px;
     padding: 15px 30px;
