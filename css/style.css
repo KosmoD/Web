@@ -1,13 +1,73 @@
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap);
+
+@keyframes bounce {
+    0%,20%,50%,80%,to {
+        transform: translateZ(-2px) translateY(5px)
+    }
+
+    40% {
+        transform: rotateY(180deg) translateZ(-2px) translateY(-35px)
+    }
+
+    60% {
+        transform: translateZ(-2px) translateY(-25px)
+    }
+};
+
 *     {
     box-sizing: border-box;
   }
   html,
   body   {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-    font-size: 16px;
+   background-color: #1a1a1a;
+ background: radial-gradient(circle at center,#1a1546,#040411 40%);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ width: 100%;
+  perspective: 1000px;
   }
+h3 {
+    font-size: 3.5rem;
+    line-height: 80%;
+   transform: rotateX(0) rotateY(-25deg);
+    text-transform: uppercase;
+    width: 500px;
+ text-align: center;
+    color: #b9dfff;
+    color: #fff;
+    font-family: "Zefani";
+ font-family: 'Abril Fatface';
+    margin: 3rem auto;
+    position: relative;
+    padding: 2rem 0 9rem;
+    text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228dff,0 0 35px #228dff,0 0 40px #228dff;
+ 
+ span {
+    display: inline-block;
+}
+
+}
+
+.scroll-more {
+  color: white;
+ text-align: center;
+    width: 450px;
+    position: absolute;
+    bottom: 8rem;
+    left: calc(50% - 225px);
+    margin: 0 auto;
+    font-size: 25rem;
+    opacity: 1;
+    transition: opacity .3s ease;
+    font-family: monospace;
+    pointer-events: none;
+    z-index: -1;
+    transform-origin: center;
+    -webkit-animation: bounce 3s cubic-bezier(.37,0,.21,1.02) infinite,fonts 5s linear infinite;
+    animation: bounce 3s cubic-bezier(.37,0,.21,1.02) infinite,fonts 5s linear infinite;
+}
   
   /* styling our overall page */
   body     {
