@@ -87,15 +87,15 @@ function loop(){
     var winner = whoWon(cells);
     if(winner){
    if(winner === "computer"){
-   alert("Sad you lost.");
+   Swal.fire("Sad you lost.");
    }else{
- alert("Congratulation!! You Won");
+ Swal.fire("Congratulation!! You Won");
       }
    result = winner;
     }
     else if(isTableFull(cells)){
-     result = "Draw";
-      alert("It was"+ result);
+     result = "tie";
+      Swal.fire("It was a " + result);
     }
     if(result !== ""){
    clearInterval(intervalId);
