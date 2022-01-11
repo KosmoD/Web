@@ -1,3 +1,4 @@
+const delay = ms => new Promise(res => setTimeout(res, ms));
 var isValid = false;
 var cells = [];
 var player = 1;
@@ -87,14 +88,17 @@ function loop(){
     var winner = whoWon(cells);
     if(winner){
    if(winner === "computer"){
+    await delay(10000);
    Swal.fire("Sad you lost.");
    }else{
+    await delay(10000);
  Swal.fire("Congratulation!! You Won");
       }
    result = winner;
     }
     else if(isTableFull(cells)){
      result = "tie";
+     await delay(10000);
       Swal.fire("It was a " + result);
     }
     if(result !== ""){
