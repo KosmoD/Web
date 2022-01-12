@@ -87,7 +87,10 @@ function loop(){
     var winner = whoWon(cells);
     if(winner){
    if(winner === "computer"){   
-   Swal.fire("Sad you lost.");
+   Swal.fire({
+   title: 'Sad you lost!',
+   timer: 7000 
+   });
    }else{
     Swal.fire("Congratulation!! You Won");
       }
