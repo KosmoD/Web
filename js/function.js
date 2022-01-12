@@ -85,6 +85,8 @@ function loop(){
  
  
     var winner = whoWon(cells);
+    let timerInterval 
+    
     if(winner){
    if(winner === "computer"){   
    Swal.fire({
