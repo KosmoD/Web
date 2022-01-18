@@ -9,20 +9,20 @@
     font-size: 16px;
   }
 
-  /* styling our overall page */
+  
   body     {
     background: #FFF;
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  /* styling our header */
+  
   header   {
     background: #222;
     color: #FFF;
     padding: 20px 30px;
   }
 
-  /* logo */
+ 
   #logo         {
     display: inline-block;
     color: #FFF;
@@ -79,23 +79,23 @@
   }
 
   /* styling our main content */
-  .hero           {
+  .main-class    {
     min-height: 800px;
     text-align: center;
     background-color: #010a01;
     background-size: cover;
   }
-  .hero-content   {
+  .main-class2   {
     color: #FFFFFF;
     padding-top: 130px;
   }
-  .hero-content h1   {
+  .main-class2 h1   {
       margin: 0;
   }
-.hero-content p    {
+.main-class2 p    {
     font-size: 50px;
   }
-  .hero-content a    {
+  .main-class a    {
     display: inline-block;
     color: #FFFFFF;
     border: 3px solid #FFF;
