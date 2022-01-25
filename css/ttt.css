@@ -26,6 +26,22 @@ header   {
     position: sticky;
     top: 0;
   }
+#logo         {
+    display: inline-block;
+    color: #FFF;
+    text-decoration: none;
+    width: 49%;
+  }
+  #logo img    {
+    width: 50px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  #logo span   {
+    display: inline-block;
+  }
+
  nav     {
     width: 50%;
     display: inline-block;
