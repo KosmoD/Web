@@ -1,160 +1,101 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-* {
-    margin: 0;
-    padding: 0;
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    background-color: #F9BF3B;
-    font-family: Montserrat, sans-serif;
-    /* font-size: 50px; */
-    text-align: center;
+	margin: 0;
+	padding: 0;
+	font-family: 'Fira Mono', monospace;
+	font-size: 16px;
+	background: rgba(33, 46, 59, 1);
+	color: rgba(250,250,255,1);
 }
 
-.wrapper {
-    background-color: #fff;
-    width: 520px;
-    height: 350px;
-    margin: 20px auto;
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 6px 6px #ECF0F1;
+pre {
+	text-align: center;
+	color: rgba(74, 147, 170, 1);
 }
 
-.cal {
-    background-color: #ECF0F1;
-    width: 345px;
-    /* height: 75px; */
-    padding: 10px;
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    margin-left: -175px;
-
-    font-size: 40px;
-    color: #808080;
-    border-radius: 5px;
-
+.content {
+	max-width: 500px;
+	margin: 20px auto;
 }
 
-.cal .cell {
-    margin: 0 5px;
+.app__input, .app__end {
+	text-align: center;
 }
 
-.player {
-    position: absolute;
-    width: 425px;
-    top: 130px;
-    left: 50%;
-    margin-left: -210px;
+.app__end {
+	margin-top: 40px;
 }
 
-.btn {
-    background: #cb4e4e;
-    color: #fff;
-    box-shadow: 0 6px #ab3c3c;
-    border: none;
-    font-size: 100px;
-    font-weight: 900;
-    width: 150px;
-    margin: 15px 30px;
-    padding: 5px 15px;
-    border-radius: 3px;
-    display: inline-block;
-    outline: none;
-    position: relative;
+input {
+	outline: none;
+	border: none;
+	margin: 0 0 20px 3px;
+	padding: 8px 5px 0px 0;
+	background: transparent;
+	color: rgba(250,250,255,1);
+	font-size: 20px;
+	border-bottom: 1px dotted rgba(91,114,127,1);
 }
 
-.btn:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
+button {
+	background: transparent;
+	border: 1px dashed rgba(250,250,255,1);
+	outline: none;
+	cursor: pointer;
+	color: rgba(250,250,255,1);
+	padding: 8px 30px 9px;
+	font-size: 14px;
+	text-transform: uppercase;
 }
 
-.btn:hover {
-    box-shadow: 0 8px #ab3c3c;
-    top: -2px;
+.app__gen-number {
+	text-align: center;
 }
 
-.btn:active {
-    box-shadow: 0 0 #ab3c3c;
-    top: 6px;
+.app__divider {
+	color: rgba(91,114,127,1);
+	margin: 20px 0;
 }
 
-.control {
-    display: none;
-    position: relative;
-    padding : 5px 0;
-    background: #2ca5d4;
-    width: 520px;
-    margin: 30px auto;
-    border-radius: 5px;
-    box-shadow: 0 6px #2980b9;
+.app__number {
+	font-size: 36px;
+	color: rgba(244, 89, 87, 1);
 }
 
-.control .ctrl-button {
-    font-size: 35px;
-    color: #fff;
-    text-transform: uppercase;
-    text-decoration: none;
+.app__info:before,
+.app__info:after {
+	content: ' ';
+	display: table;
 }
 
-.control:hover {
-    top: -2px;
-    box-shadow: 0 8px #2980b9;
+.app__info:after {
+	clear: both;
 }
 
-.ctrl:active {
-    box-shadow: 0 0 #2980b9;
-    top: 6px;
+.app__info {
+	margin: 20px 0;
 }
 
-.bar {
-    display: none;
-    position: relative;
-    width: 520px;
-    height: 50px;
-    margin: 30px auto;
-    background-color: #6BB9F0;
-    border-radius: 5px;
+.app__level {
+	float: left;
+	color: rgba(244, 192, 37, 1);
 }
 
-.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 50px;
-    background-color: #2980b9;
-    border-radius: 5px;
+.app__wrong {
+	float: right;
+	color: rgba(244, 89, 87, 1);
 }
 
-/**/
-
-.game-over {
-    background: #87D37C;
-    width: 520px;
-    margin: 20px auto;
-    padding: 15px 0;
-    box-shadow: 6px 6px #3FC380;
-    border-radius: 10px;
-}
-
-p {
-    font-size: 28px;
-    color: #fff;
-}
-
-.new {
-    position: absolute;
-    top: 465px;
-    margin-left: 10px;
-    font-size: 32px;
-    text-transform: uppercase;
-    color: #cb4e4e;
+.app__author {
+	font-family: Helvetica, Arial;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	color: rgba(33, 150, 243, 1);
+	text-decoration: none;
 }
