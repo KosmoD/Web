@@ -1,185 +1,327 @@
-*,
-*:before,
-*:after {
+html {
   box-sizing: border-box;
-  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 html,
 body {
+  width: 100%;
   height: 100%;
-}
-
-$card-size: 60px;
-$card-size-bigger-device: 120px;
-$device-bigger: 600px;
-[ng-cloak] {
-  opacity: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  min-height: 100%;
-  margin: 0;
-  font: 20px sans-serif;
-  background: linear-gradient(to left, dodgerblue, #345);
+  background: #ffffff;
+  font-family: "Permanent Marker", cursive;
+  font-size: 16px;
 }
 
-@for $i from 1 through 8 {
-  .theme#{$i} {
-    background: hsla(($i - 1)*45, 70%, 50%, .7);
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  border-bottom: 1px solid currentColor;
+h1 {
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+  width: 85%;
+  background: #716f71;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 0 3em;
+}
+
+.deck .card {
+  height: 3.7rem;
+  width: 3.7rem;
+  margin: 0.2rem 0.2rem;
+  background: #141214;
+  font-size: 0;
+  color: #ffffff;
+  border-radius: 5px;
   cursor: pointer;
-  // Remove blink effect on mobile device button click
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.app {
-  display: block;
+.deck .card.open {
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
+  animation-name: flipInY;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: 0.75s;
+}
+
+.deck .card.show {
+  font-size: 33px;
+}
+
+.deck .card.match {
+  cursor: default;
+  background: #e5f720;
+  font-size: 33px;
+  animation-name: rubberBand;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: 0.75s;
+}
+
+.deck .card.unmatched {
+  animation-name: pulse;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: 0.75s;
+  background: #e2043b;
+}
+
+.deck .card.disabled {
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.score-panel .stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+  list-style: none;
+  display: inline-block;
+}
+
+.score-panel .restart {
+  float: right;
+  cursor: pointer;
+}
+
+.fa-star {
+  color: #ffd700;
+}
+
+.timer {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+/*
+ * Styles for congratulations modal
+ */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 2s;
-  color: white;
-  &.app-ready {
-    opacity: 1;
-  }
-  &__hud {
-    background: rgba(0, 0, 0, .1);
-    text-align: center;
-    padding: 1em;
-    &__game-info,
-    &__game-completed {
-      display: inline-block;
-      margin-right: 1em;
-    }
-    &__game-status {
-      display: inline-block;
-      font-size: 70%;
-      margin-right: 1em;
-    }
-    &__btn-restart {
-      font-size: 70%;
-    }
-  }
-  &__cards-container {
-    margin: 5px auto 0;
-    max-width: 320px;
-    @media(min-width: $device-bigger) {
-      max-width: $device-bigger;
-    }
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    &__card {
-      display: inline-block;
-      margin: 5px;
-      overflow: hidden;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      user-select: none;
-      width: $card-size;
-      height: $card-size;
-      @media(min-width: $device-bigger) {
-        width: $card-size-bigger-device;
-        height: $card-size-bigger-device;
-      }
-      // ngAnimate
-      &.ng-leave {
-        opacity: 1;
-        transform: scale3d(1, 1, 1);
-        transition: 2s ease-in-out;
-      }
-      &.ng-leave.ng-leave-active {
-        opacity: 0;
-        width: 0;
-        margin: 0;
-        transform: scale3d(0, 0, 0);
-      }
-      &.ng-enter {
-        transition: 1s ease-in-out;
-        opacity: 0;
-      }
-      &.ng-enter.ng-enter-active {
-        opacity: 1;
-      }
-      @for $i from 1 through 16 {
-        &:nth-child(#{$i}) {
-          .front {
-            animation-delay: #{$i / 1.5}s;
-          }
-        }
-      }
-      &__front {
-        text-align: center;
-        line-height: $card-size;
-        @media(min-width: $device-bigger) {
-          line-height: $card-size-bigger-device;
-        }
-        background: rgba(255, 255, 255, .1);
-        cursor: pointer;
-        animation: front-cover 2s ease-in-out alternate infinite;
-        &:hover {
-          background: rgba(255, 255, 255, .3);
-        }
-      }
-      &__back {
-        text-align: center;
-        line-height: $card-size;
-        @media(min-width: $device-bigger) {
-          line-height: $card-size-bigger-device;
-        }
-        font-size: 40px;
-        @media(min-width: $device-bigger) {
-          font-size: 60px;
-        }
-        > span {
-          // Using a span in case we want to do fancy stuff like rotating animation
-          display: block;
-          animation: back-cover 2s ease-in-out alternate infinite;
-        }
-      }
-    }
-  }
 }
 
-@keyframes back-cover {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
 }
 
-@keyframes front-cover {
-  0% {
-    // Play with some animations for the front cover :)
-  }
-  100% {}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 85%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  font-family: "Gloria Hallelujah", cursive;
 }
 
-@keyframes fade-in {
-  0% {
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: #e5f720;
+}
+
+.popup .content-1,
+.content-2 {
+  max-height: 30%;
+  overflow: auto;
+  text-align: center;
+}
+
+.show {
+  visibility: visible !important;
+  opacity: 100 !important;
+}
+
+#starRating li {
+  display: inline-block;
+}
+
+#play-again {
+  background-color: #141214;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  font-family: "Gloria Hallelujah", cursive;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* animations */
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
     opacity: 0;
   }
-  100% {
+
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
     opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
   }
 }
 
-.ng-enter-stagger {
-  transition-delay: 0.1s;
-  transition-duration: 0s;
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
-.ng-leave-stagger {
-  transition-delay: 0.1s;
-  transition-duration: 0s;
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/****** Media queries
+***************************/
+
+@media (max-width: 320px) {
+  .deck {
+    width: 85%;
+  }
+
+  .deck .card {
+    height: 4.7rem;
+    width: 4.7rem;
+  }
+}
+
+/* For Tablets and larger screens
+****************/
+
+@media (min-width: 768px) {
+  .container {
+    font-size: 22px;
+  }
+
+  .deck {
+    width: 660px;
+    height: 680px;
+  }
+
+  .deck .card {
+    height: 125px;
+    width: 125px;
+  }
+
+  .popup {
+    width: 60%;
+  }
 }
