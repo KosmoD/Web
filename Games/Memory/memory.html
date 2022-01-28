@@ -1,20 +1,26 @@
-<div class="wrap">
-<div class="game"></div>
-	
-	<div class="modal-overlay">
-		<div class="modal">
-			<h2 class="winner">You Rock!</h2>
-			<button class="restart">Play Again?</button>
-			<p class="message">Developed on <a href="https://codepen.io">CodePen</a> by <a href="https://codepen.io/natewiley">Nate Wiley</a></p>
-			<p class="share-text">Share it?</p>
-			<ul class="social">
-				<li><a target="_blank" class="twitter" href="https://twitter.com/share?url=https://codepen.io/natewiley/pen/HBrbL"><span class="fa fa-twitter"></span></a></li>
-				<li><a target="_blank" class="facebook" href="https://www.facebook.com/sharer.php?u=https://codepen.io/natewiley/pen/HBrbL"><span class="fa fa-facebook"></span></a></li>
-				<li><a target="_blank" class="google" href="https://plus.google.com/share?url=https://codepen.io/natewiley/pen/HBrbL"><span class="fa fa-google"></span></a></li>
-			</ul>
-		</div>
-	</div>
-  <footer>
-		<p class="disclaimer">All logos are property of their respective owners, No Copyright infringement intended.</p>
-	</footer>
+<main class="app" ng-app="app" ng-controller="AppController" ng-class="{'app-ready': appReady}">
+
+  <div class="app__hud">
+
+    <div class="app__hud__game-info" ng-hide="gameCompleted" ng-click="titleAction()" ng-swipe-left="changeIcons()" ng-swipe-right="changeIcons()">Find the match</div>
+    <div class="app__hud__game-completed" ng-show="gameCompleted">
+      Congratulations!
+    </div>
+    <div class="app__hud__game-status">clicks: {{clickCount}}, cards: {{cardsLeft}}</div>
+    <button ng-click="restart()" class="app__hud__btn-restart">Restart</button>
   </div>
+
+  <div class="app__cards-container">
+
+    <div class="app__cards-container__card" role="button" ng-repeat="card in list" id="{{ 'card-' + card.id }}">
+
+      <div class="front app__cards-container__card__front" ng-click="click(card, $index)" ng-swipe-right="click(card, $index)" ng-swipe-left="click(card, $index)"> {{card.isKnown ? "" : "?"}}</div>
+      <div class="back app__cards-container__card__back">
+        <span ng-class="card.theme">{{card.icon}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
