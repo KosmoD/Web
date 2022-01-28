@@ -1,0 +1,67 @@
+.cell{
+    background-color:white;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    font-size: 100px;
+    color: black;
+    text-align: center;
+    line-height: 200px;
+  }
+  #main{
+    min-height: 100%;
+    min-height: 100vh;
+    background-color: black;
+   
+    display: flex;
+    align-items: center;
+  }
+.hero{
+  text-align: center;
+}
+header   {
+    background: #000;
+    color: #FFF;
+    padding: 20px 30px;
+    position: sticky;
+    top: 0;
+  }
+#logo         {
+    display: inline-block;
+    color: #FFF;
+    text-decoration: none;
+    width: 49%;
+  }
+  #logo img    {
+    width: 50px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  #logo span   {
+    display: inline-block;
+  }
+
+ nav     {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+  }
+  nav ul   {
+    list-style: none;
+    margin: 0;
+  }
+  nav ul li {
+    display: inline-block;
+  }
+  nav ul li a    {
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 3px;
+    transition: 0.3s ease all;
+  }
+  nav ul li a:hover   {
+    background: #444;
+  }
