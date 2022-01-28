@@ -1,269 +1,298 @@
+/*Game Objects*/
 
-// other themes to add ?
-// bigger memory?
+function Cal() {
+    this.cals =  [];
+    this.Ops = new Operations();
+//    this.Num = new Numbers(this.Ops);
 
-var library = {
-  pokemon: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980025/memory/Pokemon/Bulbasaur.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980083/memory/Pokemon/Charmander.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980101/memory/Pokemon/Squirtle.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980116/memory/Pokemon/Pikachu.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980129/memory/Pokemon/Mewtwo.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980142/memory/Pokemon/Mew.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980154/memory/Pokemon/Articuno.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980164/memory/Pokemon/Zapdos.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980175/memory/Pokemon/Moltres.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980186/memory/Pokemon/Eevee.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980025/memory/Pokemon/Bulbasaur.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980083/memory/Pokemon/Charmander.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980101/memory/Pokemon/Squirtle.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980116/memory/Pokemon/Pikachu.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980129/memory/Pokemon/Mewtwo.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980142/memory/Pokemon/Mew.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980154/memory/Pokemon/Articuno.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980164/memory/Pokemon/Zapdos.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980175/memory/Pokemon/Moltres.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980186/memory/Pokemon/Eevee.png'
-  ],
-  starwars: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980981/memory/starwars/anakin%20skywalker.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981009/memory/starwars/luke%20skywalker.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981022/memory/starwars/Obi%20wann.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981054/memory/starwars/Han%20solo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981074/memory/starwars/chewbacca.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981095/memory/starwars/yoda.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981117/memory/starwars/dark%20sidious.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981141/memory/starwars/dark%20vador.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981165/memory/starwars/padme.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981190/memory/starwars/leia.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547980981/memory/starwars/anakin%20skywalker.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981009/memory/starwars/luke%20skywalker.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981022/memory/starwars/Obi%20wann.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981054/memory/starwars/Han%20solo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981074/memory/starwars/chewbacca.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981095/memory/starwars/yoda.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981117/memory/starwars/dark%20sidious.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981141/memory/starwars/dark%20vador.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981165/memory/starwars/padme.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981190/memory/starwars/leia.jpg'
-  ],
-  lotr: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981408/memory/lotr/gandalf.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981438/memory/lotr/sauron.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981469/memory/lotr/Aragorn.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981501/memory/lotr/legolas.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981535/memory/lotr/Gimli.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981603/memory/lotr/golum.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981645/memory/lotr/sam.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981686/memory/lotr/saroumane.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981738/memory/lotr/bilbo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981802/memory/lotr/frodo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981408/memory/lotr/gandalf.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981438/memory/lotr/sauron.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981469/memory/lotr/Aragorn.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981501/memory/lotr/legolas.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981535/memory/lotr/Gimli.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981603/memory/lotr/golum.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981645/memory/lotr/sam.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981686/memory/lotr/saroumane.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981738/memory/lotr/bilbo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547981802/memory/lotr/frodo.jpg'
-  ],
-  disney: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982044/memory/disney/mickey.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982088/memory/disney/mowgli.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982610/memory/disney/tarzan.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982620/memory/disney/simba.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982628/memory/disney/aladin.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982636/memory/disney/blanche%20neige.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982644/memory/disney/alice.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982653/memory/disney/peter%20pan.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982663/memory/disney/pinocchio.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982738/memory/disney/raiponce.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982044/memory/disney/mickey.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982088/memory/disney/mowgli.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982610/memory/disney/tarzan.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982620/memory/disney/simba.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982628/memory/disney/aladin.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982636/memory/disney/blanche%20neige.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982644/memory/disney/alice.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982653/memory/disney/peter%20pan.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982663/memory/disney/pinocchio.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982738/memory/disney/raiponce.jpg'
-  ],
-  pixar: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982971/memory/pixar/up.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982987/memory/pixar/buzz.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983000/memory/pixar/woody.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983016/memory/pixar/Remy.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983032/memory/pixar/Mike.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983077/memory/pixar/Nemo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983114/memory/pixar/wall-e.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983169/memory/pixar/Mr-Incredible.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983381/memory/pixar/sully.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983403/memory/pixar/flash%20mcqueen.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982971/memory/pixar/up.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547982987/memory/pixar/buzz.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983000/memory/pixar/woody.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983016/memory/pixar/Remy.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983032/memory/pixar/Mike.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983077/memory/pixar/Nemo.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983114/memory/pixar/wall-e.png',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983169/memory/pixar/Mr-Incredible.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983381/memory/pixar/sully.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547983403/memory/pixar/flash%20mcqueen.jpg'
-  ],
-  harrypotter: [
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998926/memory/harrypotter/harry.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998958/memory/harrypotter/ron.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998992/memory/harrypotter/hermione.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999106/memory/harrypotter/dumbledore.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999032/memory/harrypotter/malfoy.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999143/memory/harrypotter/voldemort.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999401/memory/harrypotter/rogue.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999196/memory/harrypotter/hagrid.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999271/memory/harrypotter/sirius.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999577/memory/harrypotter/neville.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998926/memory/harrypotter/harry.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998958/memory/harrypotter/ron.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547998992/memory/harrypotter/hermione.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999106/memory/harrypotter/dumbledore.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999032/memory/harrypotter/malfoy.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999143/memory/harrypotter/voldemort.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999401/memory/harrypotter/rogue.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999196/memory/harrypotter/hagrid.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999271/memory/harrypotter/sirius.jpg',
-    'https://res.cloudinary.com/beumsk/image/upload/v1547999577/memory/harrypotter/neville.jpg'
-  ]
+    this.init =  function() {
+        this.Ops = new Operations();
+        this.Ops.set();
+        var Num = new Numbers(this.Ops);
+        Num.set();
+
+        var i = 0; j = 0;
+        for(var count = 0; count < this.Ops.len + Num.len; count++ ) {
+            if(count % 2 == 0)
+                this.cals[count] = Num.numArray[i++];
+            else
+                this.cals[count] = this.Ops.opsArray[j++];
+        }
+    };
+
+    this.ans = function() {
+        function combine(a, b, type) {
+            if(type == "+")
+                return a + b;
+            else return a - b;
+        }
+
+        var ans = this.cals[0];
+        for(var i = 1; i <= this.cals.length - 1; i += 2) {
+            ans = combine(ans, this.cals[i+1], this.cals[i].type)
+        }
+
+        return ans;
+    }
+};
+
+function newScene() {
+    var c = new Cal();
+    c.init();
+    while(c.ans() <= 0)
+        c.init();
+    return c;
 }
 
-var images = [];
-var tempElt1 = "";
-var tempElt2 = "";
-var click = -1;
-var win = 0;
-var score = 0;
-var time = 0;
+function Operations() {
+    this.len = 0;
+    this.opsArray = [];
+    this.set = function() {
+        this.len = Math.floor(Math.random()*2 + 1); //it's easy
+        for(var i = 0; i < this.len; i++) {
+            var type;
+            if(Math.floor(Math.random()*2) >= 1)
+                type = "+";
+            else type = "-";
+            this.opsArray.push(new operator(type));
+        }
+    }
+}
 
-var preElt = document.querySelector("#pre");
-var themesElt = document.querySelector("#themes");
-var boxElts = document.getElementsByClassName("box");
-var mainElt = document.querySelector(".main");
-var timeElt = document.querySelector("#time");
-var scoreElt = document.querySelector("#score");
-var postElt = document.querySelector("#post");
-var finalElt = document.querySelector("#final");
-var againElt = document.querySelector("#again");
+function operator(type) {
+    this.type = type;
+}
+
+function Numbers(ops) {
+    this.len = ops.len + 1;
+    this.numArray = [];
+    this.set = function() {
+        for(var i = 0; i < this.len; i++) {
+            var newNum = Math.floor(Math.random()*9 + 1);
+            this.numArray.push(newNum);
+        }
+    }
+}
 
 
-// initiate the game with chosen theme
-themesElt.addEventListener("click", function(e) {
-  if (e.target.classList.contains("themes")) {
-    activateTheme(e.target.id);
-    preElt.classList.add("hidden");
-  }
+/* DOM Display */
+
+function elt(name, className, idName) {
+    var elt = document.createElement(name);
+    $(elt).attr({
+        class: className,
+        id: idName
+    });
+    return elt;
+}
+
+var wrapper = $("#game");
+
+function drawSke() {
+    wrapper.append(elt('div', 'cal', 'cal'));
+    wrapper.append(elt('div', 'player', 'player'));
+
+    function createButton(type, idButton) {
+        var button = elt('button', 'btn', idButton);
+        $(button).text(type);
+        $(".player").append(button);
+    }
+
+    createButton('+', "add");
+    createButton('-', "sub");
+
+    var bar = elt('div', 'bar', 'bar');
+    $(bar).append(elt('div', 'progress', 'progress'));
+    $('body').append(bar);
+}
+
+function showCal(ops) {
+    var cal = $('#cal');
+    for(var i = 0; i < ops.cals.length; i++) {
+        var cell = elt('span', "cell", i);
+        if(typeof ops.cals[i] == "number")
+            $(cell).text(ops.cals[i]);
+        cal.append(cell);
+    }
+
+    var equalSign = elt('span', 'cell');
+    $(equalSign).text('=');
+    cal.append(equalSign);
+
+    var ans = elt('span', cell);
+    ans.textContent = ops.ans();
+    cal.append(ans);
+}
+
+function setButton(times) {
+    var b = elt('div', 'control', 'start');
+    var a = elt('a', 'ctrl-button');
+    $(a).text('Play Again');
+    if(!times)
+        $(a).text('Begin');
+    $(b).append(a);
+    $('body').append(b);
+    $(b).show();
+
+}
+
+/*Global variables*/
+var scene, progressWidth = 0, times = 0, frames = 0;
+var playerOps = [], spanId = 1, ans;
+var score = 0, lose = false, best;
+
+/*player init*/
+function putIn(type) {
+    playerOps.push(new operator(type));
+    var id = '#' + spanId;
+    $(id).text(type);
+    spanId += 2;
+}
+
+var runGame;
+/*loop game*/
+function loop() {
+    if(frames++ % 3 == 0) {
+        progressWidth += 5;
+        $('#progress').css('width',  progressWidth + 'px');
+    }
+
+    if(fini()) {
+        score++;
+        reset();
+        update();
+    }
+
+    runGame = requestAnimationFrame(loop);
+};
+
+
+function fini() {
+    if(playerOps.length == scene.Ops.opsArray.length) {
+        for(var i = 1, j = 0; i < scene.cals.length; i+=2, j++) {
+            if(playerOps[j])
+                scene.cals[i] = playerOps[j];
+        }
+
+        if(scene.ans() == ans)
+            return true;
+
+        lose = true;
+    }
+    return false;
+}
+
+/*game control*/
+function reset() {
+    progressWidth = 0;
+    playerOps = [];
+    spanId = 1;
+}
+
+function update() {
+    scene = newScene();
+    ans = scene.ans();
+    $('#cal').empty();
+    showCal(scene);
+}
+
+function _init() {
+    scene = newScene();
+    ans = scene.ans();
+    
+    drawSke();
+    showCal(scene);
+    setButton(times);
+}
+
+function showResult() {
+    updateScore();
+
+    $('#bar').hide();
+//    $('#start').remove();
+//    setButton(times);
+
+    var pop = elt('div', 'game-over', 'game-over');
+    var p = [];
+    for(var i = 0; i < 3; i++) {
+        p[i] = elt('p');
+        pop.appendChild(p[i]);
+    }
+
+    p[0].textContent = "Game Over";
+    p[1].textContent = "Score: " + score;
+    p[2].textContent = "Best: " + JSON.parse(localStorage["high-score"]);
+
+    if(best) {
+        console.log('new high score');
+        var newBest = elt('span', 'new');
+        $(newBest).text('New');
+        $(p[2]).append(newBest);
+    }
+
+    $('body').append(pop);
+
+    $("#start").remove();
+    setButton(times);
+    $('#start').find('a').attr('href', '');
+}
+
+function updateScore() {
+    var highscore = false;
+    best = false;
+
+    if(localStorage["high-score"]) {
+        highscore = JSON.parse(localStorage["high-score"]);
+        if(score > highscore) {
+            highscore = score;
+            best = true;
+        }
+        localStorage["high-score"] = JSON.stringify(highscore);
+    }
+    else {
+        highscore = score;
+        localStorage["high-score"] = JSON.stringify(highscore);
+    }
+}
+
+/*main*/
+
+$(function() {
+    var playing = false;
+    _init();
+
+    $('#start').click(function() {
+        console.log('new game');
+        playing = true;
+        times++;
+
+        $(this).hide();
+        $('#bar').show();
+
+        runGame = requestAnimationFrame(loop);
+    });
+
+    var getAns = setInterval(function() {
+        if(playing) {
+            if(lose || progressWidth > 520) {
+                console.log('game over');
+                //play again
+                showResult();
+                clearInterval(getAns);
+
+                cancelAnimationFrame(runGame);
+            }
+        }
+    }, 50);
+
+
+    $('#add').click(function() {
+        if(playing)
+            putIn('+');
+    });
+    $('#sub').click(function() {
+        if(playing)
+            putIn('-');
+    });
 });
 
-
-function activateTheme(theme) {
-  // insert theme in images array
-  for (let i = 0; i < 20; i++) {images.push(library[theme][i]);}  
-  // insert images in memory game
-  for (let i = 0; i < 20; i++) {
-    var rand = Math.floor(Math.random() * (images.length - 1));
-    boxElts[i].innerHTML = "<img src='" + images[rand] + "' alt='image' class='hidden'>";
-    images.splice(rand, 1);
-  }
-}
-
-
-// Handle the play
-mainElt.addEventListener("click", gameLogic);
-
-function gameLogic(e) {
-  // make sure the box is playable
-  if (e.target.classList.contains("play")) {
-    e.target.firstChild.classList.remove("hidden");
-    // first of two click
-    if (click < 1) {
-      tempElt1 = e.target;
-      // timer
-      if (click === -1) {
-        timer = setInterval(function() {
-          time++;
-          timeElt.innerHTML = time;
-        }, 1000);
-      }
-      click = 1;
-    }
-
-    // second click
-    else if (e.target !== tempElt1) {
-      tempElt2 = e.target;
-
-      // different images
-      if (tempElt1.firstChild.src !== tempElt2.firstChild.src) {
-        mainElt.removeEventListener("click", gameLogic);
-        setTimeout( function() {
-          tempElt1.firstChild.classList.add("hidden");
-          tempElt2.firstChild.classList.add("hidden");
-          mainElt.addEventListener("click", gameLogic);
-        }, 400);
-        if (score > 0) {
-          score -= 2;
-        }
-        scoreElt.innerHTML = score;
-      }
-
-      // same images
-      else {
-        score += 10;
-        win += 2;
-        tempElt1.firstChild.classList.add("outlined");
-        tempElt2.firstChild.classList.add("outlined");
-        tempElt1.classList.remove("play");
-        tempElt2.classList.remove("play");
-        scoreElt.innerHTML = score;
-
-        // game won
-        if (win === 20) {
-          clearInterval(timer);
-          finalElt.innerHTML = "You won " + score + " points <br> in " + time + " seconds";
-          postElt.classList.remove("hidden");
-        }
-      }
-      click = 0;
-    }
-  }
-}
-
-againElt.addEventListener("click", resetGame);
-
-function resetGame() {
-  // reset game
-  tempElt1 = "";
-  tempElt2 = "";
-  click = -1;
-  win = 0;
-  score = 0;
-  time = 0;
-  postElt.classList.add("hidden");
-  preElt.classList.remove("hidden");
-  for (let i = 0; i < 20; i++) {
-    boxElts[i].classList.add("play");
-    boxElts[i].firstChild.classList.add("hidden");
-  }
-  timeElt.textContent = time;
-  scoreElt.textContent = score;
-}
-
-// handle focus of the page
-// function checkPageFocus() {
-//   if (document.hasFocus()) {
-//     preElt.classList.remove("hidden");
-//   }
-//   else {
-//     preElt.classList.add("hidden");
-//   }
-// }
-// var checkPageInterval = setInterval(checkPageFocus, 300);
