@@ -1,234 +1,111 @@
-// cards array holds all cards
-let card = document.getElementsByClassName("card");
-let cards = [...card];
+var BoxOpened = "";
+var ImgOpened = "";
+var Counter = 0;
+var ImgFound = 0;
 
-// deck of all cards in game
-const deck = document.getElementById("card-deck");
+var Source = "#boxcard";
 
-// declaring move variable
-let moves = 0;
-let counter = document.querySelector(".moves");
+var ImgSource = [
+  "http://img5.uploadhouse.com/fileuploads/17699/176992640c06707c66a5c0b08a2549c69745dc2c.png",
+  "http://img6.uploadhouse.com/fileuploads/17699/17699263b01721074bf094aa3bc695aa19c8d573.png",
+  "http://img6.uploadhouse.com/fileuploads/17699/17699262833250fa3063b708c41042005fda437d.png",
+  "http://img9.uploadhouse.com/fileuploads/17699/176992615db99bb0fd652a2e6041388b2839a634.png",
+  "http://img4.uploadhouse.com/fileuploads/17699/176992601ca0f28ba4a8f7b41f99ee026d7aaed8.png",
+  "http://img3.uploadhouse.com/fileuploads/17699/17699259cb2d70c6882adc285ab8d519658b5dd7.png",
+  "http://img2.uploadhouse.com/fileuploads/17699/1769925824ea93cbb77ba9e95c1a4cec7f89b80c.png",
+  "http://img7.uploadhouse.com/fileuploads/17699/1769925708af4fb3c954b1d856da1f4d4dcd548a.png",
+  "http://img9.uploadhouse.com/fileuploads/17699/176992568b759acd78f7cbe98b6e4a7baa90e717.png",
+  "http://img9.uploadhouse.com/fileuploads/17699/176992554c2ca340cc2ea8c0606ecd320824756e.png"
+];
 
-// declare variables for star icons
-const stars = document.querySelectorAll(".fa-star");
+function RandomFunction(MaxValue, MinValue) {
+		return Math.round(Math.random() * (MaxValue - MinValue) + MinValue);
+	}
+	
+function ShuffleImages() {
+	var ImgAll = $(Source).children();
+	var ImgThis = $(Source + " div:first-child");
+	var ImgArr = new Array();
 
-// declaring variable of matchedCards
-let matchedCard = document.getElementsByClassName("match");
+	for (var i = 0; i < ImgAll.length; i++) {
+		ImgArr[i] = $("#" + ImgThis.attr("id") + " img").attr("src");
+		ImgThis = ImgThis.next();
+	}
+	
+		ImgThis = $(Source + " div:first-child");
+	
+	for (var z = 0; z < ImgAll.length; z++) {
+	var RandomNumber = RandomFunction(0, ImgArr.length - 1);
 
-// stars list
-let starsList = document.querySelectorAll(".stars li");
-
-// close icon in modal
-let closeicon = document.querySelector(".close");
-
-// declare modal
-let modal = document.getElementById("popup1");
-
-// array for opened cards
-var openedCards = [];
-
-// @description shuffles cards
-// @param {array}
-// @returns shuffledarray
-function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
+		$("#" + ImgThis.attr("id") + " img").attr("src", ImgArr[RandomNumber]);
+		ImgArr.splice(RandomNumber, 1);
+		ImgThis = ImgThis.next();
+	}
 }
 
-// @description shuffles cards when page is refreshed / loads
-document.body.onload = startGame();
-
-// @description function to start a new play
-function startGame() {
-  // empty the openCards array
-  openedCards = [];
-
-  // shuffle deck
-  cards = shuffle(cards);
-  // remove all exisiting classes from each card
-  for (var i = 0; i < cards.length; i++) {
-    deck.innerHTML = "";
-    [].forEach.call(cards, function (item) {
-      deck.appendChild(item);
-    });
-    cards[i].classList.remove("show", "open", "match", "disabled");
-  }
-  // reset moves
-  moves = 0;
-  counter.innerHTML = moves;
-  // reset rating
-  for (var i = 0; i < stars.length; i++) {
-    stars[i].style.color = "#FFD700";
-    stars[i].style.visibility = "visible";
-  }
-  //reset timer
-  second = 0;
-  minute = 0;
-  hour = 0;
-  var timer = document.querySelector(".timer");
-  timer.innerHTML = "0 mins 0 secs";
-  clearInterval(interval);
+function ResetGame() {
+	ShuffleImages();
+	$(Source + " div img").hide();
+	$(Source + " div").css("visibility", "visible");
+	Counter = 0;
+	$("#success").remove();
+	$("#counter").html("" + Counter);
+	BoxOpened = "";
+	ImgOpened = "";
+	ImgFound = 0;
+	return false;
 }
 
-// @description toggles open and show class to display cards
-var displayCard = function () {
-  this.classList.toggle("open");
-  this.classList.toggle("show");
-  this.classList.toggle("disabled");
-};
+function OpenCard() {
+	var id = $(this).attr("id");
 
-// @description add opened cards to OpenedCards list and check if cards are match or not
-function cardOpen() {
-  openedCards.push(this);
-  var len = openedCards.length;
-  if (len === 2) {
-    moveCounter();
-    if (openedCards[0].type === openedCards[1].type) {
-      matched();
-    } else {
-      unmatched();
-    }
-  }
+	if ($("#" + id + " img").is(":hidden")) {
+		$(Source + " div").unbind("click", OpenCard);
+	
+		$("#" + id + " img").slideDown('fast');
+
+		if (ImgOpened == "") {
+			BoxOpened = id;
+			ImgOpened = $("#" + id + " img").attr("src");
+			setTimeout(function() {
+				$(Source + " div").bind("click", OpenCard)
+			}, 300);
+		} else {
+			CurrentOpened = $("#" + id + " img").attr("src");
+			if (ImgOpened != CurrentOpened) {
+				setTimeout(function() {
+					$("#" + id + " img").slideUp('fast');
+					$("#" + BoxOpened + " img").slideUp('fast');
+					BoxOpened = "";
+					ImgOpened = "";
+				}, 400);
+			} else {
+				$("#" + id + " img").parent().css("visibility", "hidden");
+				$("#" + BoxOpened + " img").parent().css("visibility", "hidden");
+				ImgFound++;
+				BoxOpened = "";
+				ImgOpened = "";
+			}
+			setTimeout(function() {
+				$(Source + " div").bind("click", OpenCard)
+			}, 400);
+		}
+		Counter++;
+		$("#counter").html("" + Counter);
+
+		if (ImgFound == ImgSource.length) {
+			$("#counter").prepend('<span id="success">You Found All Pictues With </span>');
+		}
+	}
 }
 
-// @description when cards match
-function matched() {
-  openedCards[0].classList.add("match", "disabled");
-  openedCards[1].classList.add("match", "disabled");
-  openedCards[0].classList.remove("show", "open", "no-event");
-  openedCards[1].classList.remove("show", "open", "no-event");
-  openedCards = [];
+$(function() {
+
+for (var y = 1; y < 3 ; y++) {
+	$.each(ImgSource, function(i, val) {
+		$(Source).append("<div id=card" + y + i + "><img src=" + val + " />");
+	});
 }
-
-// description when cards don't match
-function unmatched() {
-  openedCards[0].classList.add("unmatched");
-  openedCards[1].classList.add("unmatched");
-  disable();
-  setTimeout(function () {
-    openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
-    openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
-    enable();
-    openedCards = [];
-  }, 1100);
-}
-
-// @description disable cards temporarily
-function disable() {
-  Array.prototype.filter.call(cards, function (card) {
-    card.classList.add("disabled");
-  });
-}
-
-// @description enable cards and disable matched cards
-function enable() {
-  Array.prototype.filter.call(cards, function (card) {
-    card.classList.remove("disabled");
-    for (var i = 0; i < matchedCard.length; i++) {
-      matchedCard[i].classList.add("disabled");
-    }
-  });
-}
-
-// @description count player's moves
-function moveCounter() {
-  moves++;
-  counter.innerHTML = moves;
-  //start timer on first click
-  if (moves == 1) {
-    second = 0;
-    minute = 0;
-    hour = 0;
-    startTimer();
-  }
-  // setting rates based on moves
-  if (moves > 8 && moves < 12) {
-    for (i = 0; i < 3; i++) {
-      if (i > 1) {
-        stars[i].style.visibility = "collapse";
-      }
-    }
-  } else if (moves > 13) {
-    for (i = 0; i < 3; i++) {
-      if (i > 0) {
-        stars[i].style.visibility = "collapse";
-      }
-    }
-  }
-}
-
-// @description game timer
-var second = 0,
-  minute = 0;
-hour = 0;
-var timer = document.querySelector(".timer");
-var interval;
-function startTimer() {
-  interval = setInterval(function () {
-    timer.innerHTML = minute + "mins " + second + "secs";
-    second++;
-    if (second == 60) {
-      minute++;
-      second = 0;
-    }
-    if (minute == 60) {
-      hour++;
-      minute = 0;
-    }
-  }, 1000);
-}
-
-// @description congratulations when all cards match, show modal and moves, time and rating
-function congratulations() {
-  if (matchedCard.length == 16) {
-    clearInterval(interval);
-    finalTime = timer.innerHTML;
-
-    // show congratulations modal
-    modal.classList.add("show");
-
-    // declare star rating variable
-    var starRating = document.querySelector(".stars").innerHTML;
-
-    //showing move, rating, time on modal
-    document.getElementById("finalMove").innerHTML = moves;
-    document.getElementById("starRating").innerHTML = starRating;
-    document.getElementById("totalTime").innerHTML = finalTime;
-
-    //closeicon on modal
-    closeModal();
-  }
-}
-
-// @description close icon on modal
-function closeModal() {
-  closeicon.addEventListener("click", function (e) {
-    modal.classList.remove("show");
-    startGame();
-  });
-}
-
-// @desciption for user to play Again
-function playAgain() {
-  modal.classList.remove("show");
-  startGame();
-}
-
-// loop to add event listeners to each card
-for (var i = 0; i < cards.length; i++) {
-  card = cards[i];
-  card.addEventListener("click", displayCard);
-  card.addEventListener("click", cardOpen);
-  card.addEventListener("click", congratulations);
-}
+	$(Source + " div").click(OpenCard);
+	ShuffleImages();
+});
