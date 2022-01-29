@@ -77,9 +77,7 @@ header   {
     position: sticky;
     top: 0;
   }
-
- 
-  #logo         {
+#logo         {
     display: inline-block;
     color: #FFF;
     text-decoration: none;
