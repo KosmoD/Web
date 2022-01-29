@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[optionTwoId].removeEventListener('click', flipCard)
       cardsWon.push(cardsChosen)
     } else {
-      cards[optionOneId].setAttribute('src', 'images/blank.png')
-      cards[optionTwoId].setAttribute('src', 'images/blank.png')
+      cards[optionOneId].setAttribute('src', 'images/question.png')
+      cards[optionTwoId].setAttribute('src', 'images/question.png')
       
     }
     cardsChosen = []
