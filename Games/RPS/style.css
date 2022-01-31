@@ -97,3 +97,7 @@ header   {
   #logo span   {
     display: inline-block;
   }
+.design{
+    background-color: #000000;
+    background-size: cover;
+}    
