@@ -17,27 +17,27 @@ const text = document.getElementById('demo');
 const text2 = document.getElementById('demo2');
 
 const tie = ()=>{
-    text.innerHTML = "It's a Tie ! ";
-    text.style.color = 'orange';
+    text.innerHTML = "TIE";
+    text.style.color = 'yellow';
     text2.innerHTML = text.innerHTML;
     text2.style.color = 'orange';
 }
 
 const win = ()=>{
-    text.innerHTML = "It's a Win ! ";
+    text.innerHTML = "You Won! GG ";
     text.style.color = 'rgb(1, 146, 1)';
     text2.innerHTML = text.innerHTML;
     text2.style.color = 'rgb(1, 146, 1)';
 }
 
 const lose = ()=>{
-    text.innerHTML = "You Loosed ! ";
+    text.innerHTML = "You Lost!";
     text.style.color = 'red';
     text2.innerHTML = text.innerHTML;
     text2.style.color = 'red';
 }
 
-// Game Functionality.
+
 const game = () =>{
     buttons.forEach(btn =>{
         btn.addEventListener('click',(e)=>{
