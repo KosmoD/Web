@@ -7,7 +7,14 @@ header   {
   }
 
  
-  #logo         {
+  header   {
+    background: #000;
+    color: #FFF;
+    padding: 20px 30px;
+    position: sticky;
+    top: 0;
+  }
+#logo         {
     display: inline-block;
     color: #FFF;
     text-decoration: none;
@@ -21,43 +28,4 @@ header   {
   }
   #logo span   {
     display: inline-block;
-  }
-
-  /* main navigation */
-  nav     {
-    width: 50%;
-    display: inline-block;
-    text-align: right;
-  }
-  nav ul   {
-    list-style: none;
-    margin: 0;
-  }
-  nav ul li {
-    display: inline-block;
-  }
-  nav ul li a    {
-    color: #FFF;
-    text-decoration: none;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 3px;
-    transition: 0.3s ease all;
-  }
-  nav ul li a:hover   {
-    background: #444;
-  }
-
-  /* styling our footer */
-  footer   {
-    background: #000;
-    color: #FFFFFF;
-    padding: 40px;
-    text-align: center;
-  }
-  footer img   {
-    display: block;
-    border-radius: 5px;
-    width: 80px;
-    margin: 0 auto 10px;
   }
