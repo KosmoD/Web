@@ -153,24 +153,24 @@
     margin: 0;
   }
 
-  /* testimonial boxes */
-  .testimonial-box   {
+  
+  .cuppy-design   {
     display: inline-block;
     width: 33%;
     padding: 20px 30px;
   }
-  .testimonial-content   {
+  .cuppy-header   {
     background: #FFF;
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 15px;
   }    
-  .testimonial-author h5   {
+  .cuppy-lang h5   {
     font-size: 18px;
     margin: 0;
     padding-top:15px;
   }
-  .testimonial-author span {
+  .cuppy-lang span {
     font-size: 14px;
   }
 .moreParent{
