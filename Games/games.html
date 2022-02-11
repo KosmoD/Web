@@ -18,6 +18,7 @@
 
     <nav>
         <ul>
+            <button onclick="bg()">Background Music</button>
             <li><a href="">Games</a></li>
             <li><a href="">Discord Server</a></li>
             <li><a href="">CS</a></li>
@@ -25,6 +26,15 @@
     </nav>
 
 </header>
+
+<br><a href="./games.html">link text</a><br>
+<video loop id="video1" width="0" autoplay="autoplay">
+<source src="../bg music/funk-style-matrika-main-version-02-57-11425.mp3"video/mp4">
+
+Your browser does not support music.
+</video>
+</div>
+
 
 <div class="bgimg-1">
 <div class="moreParent">
@@ -79,6 +89,19 @@
   <img src="https://github.com/KosmoD/Web/blob/main/img/tabs.png?raw=true" alt="Footer Logo">
   <span>Ansh Anoop | 2022</span>
 </footer>
+
+<script>
+  var myVideo = document.getElementById("video1");
+  
+  
+  function bg() {
+  if (myVideo.paused)
+  myVideo.play();
+  else
+  myVideo.pause();
+  }
+  </script>
+  
 
 </body>
 </html>
